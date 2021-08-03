@@ -1,0 +1,456 @@
+\documentclass[../main.tex]{subfiles}
+
+
+\title{Elementary}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Operations}
+
+\subsection{Addition}
+
+\subsection{Multiplication}
+
+Multiplication is just counting by groups.
+You can count to 15 one by one, or you can count 5 groups of 3, or 3 groups of 5.
+The expression \( ab \)
+is the quantity you get when you take \( a \) units and make \( b \) groups of it.
+
+\input{fig/mult/1}
+
+We can take the groups in any order we like, so multiplication is commutative:
+\( ab = ba \).
+
+\input{fig/mult/2}
+
+Partial (non-integer) amounts work naturally (partial circles).
+Negative is just a sign change with same quantity.
+
+Division is inverse multiplication.
+The expression \( a/b \) represents how many \( b \) amount fits in \( a \),
+or how much you need to multiply \( b \) by to get to \( ab \).
+If you group up units of \( a \) of size \( b \), how many groups are there?
+
+\input{fig/mult/3}
+
+This is like quotienting out \( b \) and considering it as the new unit.
+
+Alternatively, you can think of it as making \( a \) groups of \( 1/b \).
+
+
+\subsubsection{Ratios}
+
+Another way to think about division is as a ratio.
+Given \( a/b \), if \( b \) were a measuring stick, how big would we measure \( a \) as?
+Sometimes, we don't know this answer, but we can still compare ratios.
+If we have \( a/b \) and \( c/d \), we can put the measuring sticks together into one big one.
+In order to match them up, we find the least common multiple \( bd \).
+Then in terms of the new ruler, we have \( ad/bd \) and \( cb/db \).
+
+
+\subsection{Exponentiation}
+
+Suppose a culture of bacteria replicates at a rate such that it doubles every hour.
+We start with one bacterium at a time \( t = 0 \).
+Then every hour after that, the number of bacteria is twice the number an hour previously.
+The number at time \( t \) can be found by repeatedly multiplying:
+\( 2^t = \underbrace{2 \cdot 2 \cdot \ldots \cdot 2}_t \).
+
+\noindent
+\includegraphics[width=\textwidth]{fig/discrete.png}
+
+The previous gives us a model for discrete growth,
+but now what if we wanted to talk about continuous growth?
+We would still like to keep the rate so that it doubled every time step.
+
+If we only examine the growth during 1 time step,
+we can break down the growth into partial amount like so.
+
+\input{fig/exp/1}
+
+The blue lines represent multiplying by partial proportions.
+We define partial growth so that the proportions taken together is the same as the original
+\( 2^{1/2} \cdot 2^{1/2} = 2^1 \).
+
+We can do this in general for any real number \( t \) and \( b \).
+
+\input{fig/exp/2}
+
+This also gives intuition for negative exponents
+as 'reversing time' or dividing by a proportion instead of multiplying.
+
+Exponentiation is a natural extension of repeated multiplication
+to continuous multiplicative growth.
+It is convenient to define the continuous growth so that it is 'benchmarked'
+at the given proportion every time step.
+That is, for every \( t \), we multiply by \( b \),
+and partial growth is defined so that the total proportion is just the product of the partials.
+
+\newpage
+\subsubsection{Different bases}
+
+To think about different bases, think of scaling the \( x \)-axis so that
+the amount at time 1 is always the base.
+
+\input{fig/exp/3}
+
+\subsubsection{Memorylessness}
+
+Because we are working with proportions rather than any specific amounts,
+exponential functions are 'memoryless' (you can 'forget' the zero point).
+That is, the amount of growth in any given time interval \( t \)
+is always the same proportion regardless of when we take that interval.
+
+\input{fig/exp/4}
+
+This is convenient since it allows us to only about proportions
+without thinking about amounts.
+That is, we can think of \( b^t \) as the proportion of growth that happens in a \( t \)
+time interval.
+
+\newpage
+\subsubsection{Rules}
+
+The rule \( a^{b+c} = a^b a^c \) says that adding \( c \) to growth time
+is the same as multiplying by another proportion of \( a^c \).
+
+\input{fig/exp/5}
+
+The rule \( (a^{b})^{c} = a^{bc} \) says that if we take \( p^c \)
+but we express our base proportion \( p \)
+as a exponentiation of a different proportion \( p = a^b \),
+then the result can be expressed as \( a^{bc} \).
+
+\input{fig/exp/6}
+
+
+The rule \( (ab)^c = a^c b^c \) says that if we take \( p^c \)
+but we express our base proportion \( p \)
+as a product of different proportions \( p = ab \),
+then the result can be expressed as \( a^c b^{c} \).
+
+\input{fig/exp/7}
+
+
+\subsubsection{Logarithm}
+
+If exponentiation measure growth given time,
+then the logarithm asks how much time is needed until we grow to a given amount.
+Or even better, the amount of time needed to reach a certain proportion of growth.
+Take \( b^t \) which measure continuous growth at a proportion of \( b \) per time step
+starting at \( t = 0 \) with \( b^t = 1 \).
+Then \( \log_b(c) \) is the amount of time needed to reach \( c \).
+Thus, if \( \log_b(c) = t \), then \( b^t = c \).
+
+\input{fig/log/1}
+
+
+By this definition, we have \( b^{\log_b(c)} = c \).
+
+For \( \log_b(ac) \),
+we can interpret this as the amount of time until we reach a factor of \( ac \).
+
+
+\input{fig/log/2}
+
+
+But since \( ac \) is just \( a \) multiplied by a proportion of \( c \),
+we can just find the times for \( b \) and \( c \) separately:
+\[ \log_b(ac) = \log_b(a) + \log_b(c). \]
+
+Now for \( log_b(a^c) \),
+we want to know the time until we reach a proportion \( a^c \).
+We can just figure out the time until \( a \),
+then just repeat the time as needed
+\[ \log_b(a^c) = c \cdot \log_b(a). \]
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\input{fig/log/3}
+
+\newpage
+We know we can convert between different proportions.
+
+\input{fig/log/4}
+
+Suppose we have \( b^t \) but we want to talk about it in terms of \( a \).
+We know the amount of time it takes to reach amount \( b \) at a growth ratio of \( a \)
+is \( p = \log_a(b) \).
+So \( b^t = a^{pt} \).
+
+
+\input{fig/log/5}
+
+And \( \log_a(b^t) = t \cdot \log_a(b) \), and \( t = \frac{\log_a(b^t)}{\log_a(b)} \).
+
+
+\input{fig/log/6}
+
+So \( \log \) is just a measurement, but in terms of the length of 1
+which is just the length until we reach a proportion of the base.
+Since all exponential functions are really the same,
+we can just think of them all in terms of a common base, say \( e \).
+Then our measuring stick of 1 is just \( \ln(e) = 1\).
+
+So if we are given \( \log_a(x) \), this just means
+the length until we reach a multiple of \( x \),
+but measured if 1 was the length until \( a \).
+Thus \( \log_a(x) = \frac{\ln(x)}{\ln(a)} \).
+
+
+\subsection{Distribution, Linearity}
+
+Multiplication is related to linearity.
+It distributes over addition \( a(b + c) = ab + ac \).
+It preserves the proportions between \( b \) and \( c \).
+Note that this is \( b/c \) and division is the inverse of multiplication.
+It takes 0 to 0 which is the additive identity.
+
+Likewise, exponentiation distributes over multiplication
+\( (ab)^x = a^x b^x \).
+It preserves logarithms \( \log_a(b) = \log_{a^x}(b^x) \).
+It takes 0 to 1 which is the multiplicative identity.
+
+Both linear functions and exponential functions are memoryless and self-similar.
+
+
+\newpage
+\section{Functions}
+
+\subsection{Linear Functions}
+
+A linear function \( f(x) = cx \) is a constant scaling.
+It has the properties that it maps 0 to 0,
+that it preserves addition: \( f(a+b) = f(a) + f(b) \),
+and that it preserves additional scaling: \( f(cx) = cf(x) \).
+This results in something like the real line being mapped to an evenly spaced out line.
+The scaling constant \( c \) is the slope.
+
+\input{fig/func/1}
+
+Translations of linear functions are called affine functions.
+
+\subsection{Composition}
+
+Think of \( f(2x) \) as running through the function twice as fast.
+Think of \( f(x + 2) \) as starting running through the function at 2.
+Given some \( g(x) \), we can think of \( f(g(x)) \)
+where the rate we are running through \( f \) is determined by \( g(x) \).
+
+We know we can combine the operations of addition, multiplication, powers, etc.
+to make new functions.
+We can consider these operations themselves functions.
+For example, take
+\[ f(x) = 3x^2 + (x - 1)^4 - 2^x. \]
+We can rewrite this as
+\[ f(x) = 3f_1(x) + f_2(f_3(x)) - f_1(x) \]
+where the operations are each replaced with their abstraction in the form of a function.
+
+\subsection{Graphs}
+
+A real function is a single dimensional measurement of quantity.
+With one variable, the quantity is parameterized in one dimension by the input.
+In other words, as we vary the input dimension, what do we get in the output dimension?
+We can graph this relationship as such.
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\input{fig/func/2}
+
+
+We don't care about the location of the "ball", we only care about the height.
+
+
+\subsection{Inverse}
+
+For an invertible \( f \), we have \( f\inv \).
+Imagine turning the graph of \( f \) counterclockwise.
+
+\input{fig/func/3}
+
+Then the inverse function is what we get if we try to stretch the vertical axis
+in order to get a straight line.
+
+\input{fig/func/4}
+
+\newpage
+\section{Trig Functions}
+
+\subsection{Circles}
+
+Take a circle with radius \( r \).
+We define \( \pi \) to be the ratio of half the circumference to the radius.
+In other words, the half arc is \( \pi \) times as long as the radius.
+     
+
+\input{fig/trig/1}
+
+Then the whole circumference is \( 2\pi r \).
+
+\subsubsection{Radians}
+
+Radians are a measure of angle by considering ratios of arc lengths to the radius.
+Start with the rightmost point on the circle.
+If we consider the point on the circle a certain angle away counterclockwise,
+what is the ratio of the covered arc length to the radius?
+How much do we have to multiply the radius by to reach the same length?
+
+Thus an angle of \( \pi \) radians is half the angle around a circle,
+and an angle of \( \pi/4 \) is an eighth of the angle.
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\input{fig/trig/2}
+
+Note that an angle of 0 and an angle of \( 2\pi \) is the same.
+Thus, angles in radians are an equivalence class, or the reals quotient \( 2\pi \).
+
+Because we are working with ratios,
+it is convenient to just visualize a unit circle with a radius of 1.
+
+\subsection{Sine, Cosine, and Tangent}
+
+Given a circle, the maximum height and the maximum width is the radius \( r \).
+The functions \( \sin \) and \( \cos \),
+given an angle in radians,
+tells us how much of this maximum height and width is covered by the point at the angle.
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\input{fig/trig/3}
+
+They give us the answer as a ratio of or as a percentage of \( r \).
+
+Because the domain of these functions is a partition of the reals,
+they are periodic with a period of \( 2\pi \).
+This means
+\[ \cos(x) = \cos(x + 2\pi) \]
+and
+\[ \sin(x) = \sin(x + 2\pi). \]
+
+We can specify the coordinates of a point in two ways.
+First, we can specify it's position along each axis (rectangular form):
+\[ (r \cos(x), r \sin(x)), \]
+or we can just give the radius and angle (polar form):
+\[ (r, x). \]
+
+\newpage
+The function \( \tan \) is just the ratio
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\input{fig/trig/4}
+
+We can think of this as the slope of the line through the point at the angle.
+
+
+\newpage
+\section{Complex Numbers}
+
+The complex numbers are a number system or a field just like the reals.
+Each complex number is made of two parts: the real part and the imaginary part.
+We can represent these on a plane with one axis being real and the other being imaginary.
+Take a complex number \( z = a + bi \).
+    
+
+\input{fig/comp/1}
+
+From trigonometry, we know we can get the ratio of each part to the modulus,
+or that \( a = r \cos(\theta) \)
+and \( b = r \sin(\theta) \).
+The we can represent \( z \) as
+\[ z = r(\cos(\theta) + i \sin(\theta)). \]
+
+\subsection{Operations}
+
+We define complex addition as vector addition,
+which means component wise addition.
+So \[ (a_1 + b_1 i) + (a_2 + b_2 i) = (a_1 + b_1 + (a_2 + b_2)i). \]
+This is also a translation.
+
+\input{fig/comp/2}
+
+We define complex multiplication as multiplying the moduluses and adding the angles.
+So \( (r, \theta)(p, \phi) = (rp, \theta + \phi) \).
+This is also a rotation and a scaling (dilation).
+
+\input{fig/comp/3}
+
+This is a rotation and a scaling (dilation).
+
+Algebraically, multiplication is
+\[ (a + bi)(c + di) = (ac - bd) + i (ad + bc). \]
+This is because multiplication and addition are distributive.
+
+
+
+\subsection{Euler's Formula}
+
+We know complex multiplication is just rotating a vector.
+We can also define complex exponentiation.
+Take a unit circle.
+Define \( e^{i} \) to be a rotation of 1 radian around the circle.
+
+\input{fig/comp/4}
+
+
+We can represent this rotation as the complex number
+\( (1, \theta) = \cos(\theta) + i\sin(\theta) \).
+Then the function \( e^{ix} \) just represents a rotation at a rate of
+\( e^i \) radians per \( x \).
+Exponentiation of another base is just a change of rates.
+For example, \( 2^i = e^{i \ln(2)} \).
+
+\input{fig/comp/5}
+
+Note that we can represent any complex number in exponential form.
+For example, \( (r, \theta) = re^{i \theta} \).
+
+\input{fig/comp/6}
+
+
+\section{Identities}
+
+We have \( \Re(z) = \frac{1}{2} (z + \bar z) \)
+or \( \cos(x) = \frac{e^{ix} + e^{-ix}}{2} \).
+
+\input{fig/comp/7}
+
+We have \( \Im(z) = \frac{1}{2}(z - \bar z) \)
+or \( \sin(x) = \frac{e^{ix} - e^{-ix}}{2} \).
+
+\input{fig/comp/8}
+
+We have
+\begin{align*}
+    \cos(x + y) + i \sin(x + y) &= e^{i(x + y)} \\
+    &= e^{ix} e^{iy} \\
+    &= (C + i S)(c + i s) \\
+    &= (Cc - Ss) + i (Sc + Cs)
+\end{align*}
+Thus
+\[ \cos(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y) \]
+and
+\[ \sin(x + y) = \sin(x) \cos(y) + \cos(x) \sin(y). \]
+
+
+\input{fig/comp/9}
+
+See \( \cos(x) \cos(y) \) is shrinking \( \cos(x) \) up to the red,
+and \( \sin(x) \sin(y) \) is taking the blue as a ratio to its hypotenuse.
+And \( \sin(x) \cos(y) \) is shrinking \( \sin(x) \) up to red,
+and \( \cos(x) \sin(y) \) is taking red of similar as ratio to its hypotenuse.
+
+So \( \cos(2x) = \cos^2(x) - \sin^2(x) \)
+and \( \sin(2x) = 2 \sin(x) \cos(x) \).
+
+
+
+\end{document}

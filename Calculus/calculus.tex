@@ -1,0 +1,283 @@
+\documentclass[../main.tex]{subfiles}
+
+
+\title{Calculus}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Derivatives and Integrals}
+
+\subsection{Derivatives}
+
+A function measures some quantity over time.
+Imagine a vacuum collecting particles.
+If \( f \) is the measure of the number of particles in the tank at time \( t \),
+then \( f \) is the accumulation of particles.
+And \( f' \) is just the rate of accumulation at a given time.
+And likewise, if \( g \) measures the rate of particles going in,
+then \( \int g \) is the total amount of particles collected.
+
+Velocity is the first derivative of position.
+Acceleration is the second derivative.
+Velocity is the accumulation of acceleration, or its integral.
+Position is the accumulation of velocity, or its integral.
+
+\input{fig/deriv/1}
+
+Since acceleration is the change in velocity,
+adding an acceleration vector to the velocity vector gives the resultant velocity vector.
+
+For a single variable function, we only care about the quantity varying in one dimension,
+parameterized by a one dimensional input.
+
+\input{fig/deriv/2}
+
+Graphically, the derivative of a function is just the vertical velocity of the "ball"
+and the second derivative is the vertical acceleration.
+
+
+\subsection{Finding the Derivative}
+
+
+How do we find the derivative at a point, from a graph?
+What we want is the velocity or the change in distance per change in time,
+but this has no meaning at a single moment.
+What we do is find the limit of the changes.
+
+\input{fig/deriv/4}
+
+\input{fig/deriv/5}
+
+Likewise, we find the second derivative using limits of the change in first derivatives.
+
+\input{fig/deriv/6}
+
+\input{fig/deriv/7}
+
+
+\subsection{Integrals}
+
+The velocity is the accumulation of acceleration.
+The longer something is accelerated, the more velocity it accumulates.
+The stronger the acceleration, the faster velocity accumulates.
+Likewise, displacement is the accumulation of velocity.
+This is just another way of saying that velocity is the rate of displacement.
+and that acceleration is the rate of velocity.
+
+\input{fig/deriv/8}
+
+If \( f \) represents velocity,
+then \( \Delta f \) is the change in velocity over \( \Delta x \).
+Since it is the integral of acceleration,
+it is also the net accumulation of acceleration over \( \Delta x \).
+
+Note that since the integral is the net accumulation of rate over a period \( \Delta x \),
+the manner of accumulation doesn't matter.
+for example, we could have a fast acceleration then a fast deceleration,
+or we could have a gradual increase or decrease.
+
+\input{fig/deriv/9}
+
+
+The net result is just the difference between \( f \) at the end and \( f \) at the start.
+Put another way,
+the integral can be viewed as the accumulation of average rates over a period.
+
+\[ \text{average} = \frac{1}{b - a} \int_a^b f dx. \]
+
+
+\subsection{Finding the Integral}
+
+Integration is the accumulation of a rate.
+If we imagine a vacuum accumulating particles at \( f(n) \) particles per second,
+then we can just add \( f(n) \) for every \( n \).
+However, since the rate can change continuously,
+we must use limits.
+
+We can take smaller and smaller \( dx \) "frames"
+and see how much we accumulate.
+For example,
+we can take smaller and smaller time frames and see how many particles the vacuum picks up.
+We know \( f'(x) \) is the limit of the rate at a given \( x \),
+or the number of particles per second.
+So if we multiply \( f'(x) \) by some time frame \( dx \),
+we get the total amount accumulated in that period.
+Since the rate changes continuously,
+take smaller and smaller \( dx \) and take the limit as we sum the total.
+
+\[ f = \int f' dx. \]
+
+\input{fig/deriv/10}
+
+If we represent the rate \( f' \) on a graph,
+then multiplying the rate by \( dx \) just gives us the area.
+Thus the integral is just the area under the rate graph.
+
+\input{fig/deriv/11}
+
+
+\subsection{\( e \)}
+
+Take some exponential function \( b^t \).
+Suppose we want to know how much the function gains per time.
+We know that the proportion per time is \( b \).
+So the amount of gain is \( b(b^{t}) - b^t = b^t (b - 1) \).
+This is just making \( b - 1 \) copies.
+
+\input{fig/deriv/3}
+
+We see that the rate of gain is just a proportion of itself \( (b - 1) \).
+So for example, the rate of gain for \( 2^x \) is \( 1 \cdot 2^x = 2^x \).
+However, this is a discrete rate (blue).
+What if we want the continuous rate? (red).
+
+We define \( e \) such that its continuous rate of growth is 1.
+Thus the rate of gain is just \( \dv{x} e^x = 1 \cdot e^x \).
+
+
+\newpage
+\section{Differentiation}
+
+
+\subsection{Product Rule}
+
+\input{fig/diff/1}
+
+\subsection{Chain}
+
+We run through \( f \) at a rate specified by \( g \).
+Thus if we want to convert \( dx \) to \( \dv{f}{x} \)
+but we only know \( \dv{f}{g} \),
+we just have to multiply by the change in rate of \( g \)
+
+\input{fig/diff/2}
+
+\( \dv{x} f(g) = f'(g)g' \)
+
+\subsection{Reciprocol}
+
+\( \dv{x} \frac{1}{x} = - \frac{1}{x} \cdot \frac{1}{x} = - \frac{1}{x^2} \)
+
+
+\input{fig/diff/3}
+
+\subsection{Quotient}
+
+\( \dv{x} fg^{-1} = f'g^{-1} - fg^{-2}g' = \frac{f'g - fg'}{g^2} \)
+
+\subsection{exp and log}
+
+We know \( \dv{x} b^x = ab^x \) where \( a \) is some proportion.
+We also know that \( b^x = e^{\ln(b) x} \) so
+\[ \dv{x} b^x = b^x \dv{x} \ln(b) x = b^x \ln(b) \]
+Thus \( a = \ln(b) \).
+
+At some proportion \( e^x \), our rate of growth is \( e^x \).
+If we take the inverse \( \ln(x) \), then instead of multiplying, we divide.
+so \( \dv{x} \ln(x) = \frac{1}{x} \).
+
+\subsection{Inverse}
+
+Recall that composition is taking a functions domain \( x \),
+and instead of moving through it at a rate of 1 per \( x \),
+we go through it at a rate dictated by some other function \( g(x) \).
+
+\noindent
+\input{fig/diff/4}
+
+The rate \( \dv{g}{x} \) is just \( g'(x) \).
+To convert from \( x \) to \( g \), we just multiply by the rate.
+Take \( g\inv: g(x) \to x \) to be the inverse which reverses the process.
+
+\noindent
+\input{fig/diff/5}
+
+Then the rate \( \dv{g\inv}{g} \) is just \( \dv{x}{g} \) or \( \frac{1}{g'(x)} \).
+
+
+\subsection{Implicit Differentiation}
+
+Sometimes, we have an expression or equation where it may be inconvenient to isolate
+a variable, yet have the equation implicitly define a variable as a function of another.
+In that case, we can just differentiate the variables which will often make the result simpler,
+then rearrange as needed to isolate.
+
+Take
+\[ \frac{1}{x} + xy + \sin(x^2) = 0. \]
+Let's say we want to find \( \dv{y}{x} \).
+Note that we can think of \( y \) as a function of \( x \).
+We have
+\begin{align*}
+    \dv{x} \left( \frac{1}{x} + xy + \sin(x^2) \right) = \dv{x} 0 \\
+    -x^{-2} + y + x \dv{y}{x} + \cos(x^2) 2x = 0 \\
+    \dv{y}{x} = x^{-3} - \frac{y}{x} - 2\cos(x^2).
+\end{align*}
+
+
+
+\section{Integration}
+
+\subsection{Substitution}
+
+Recall that the chain rule says \( \dv{f(g)}{x} = \dv{f}{g} \cdot \dv{g}{x} \).
+
+\input{fig/int/1}
+
+Basically, we look at how \( f \) changes per \( g \),
+but since \( g \) is just some change per \( x \)
+we just multiply by the rate \( \dv{g}{x} \) to convert.
+
+Take \[ \int f(g(x))g'(x) \dd{x}. \]
+Then since going back from \( x \) to \( g \) is the inverse,
+or \( \dv{x}{g} \) is just \( \frac{1}{g'(x)} \),
+we can multiply by that rate to convert from \( x \) to \( g \):
+\( \int f(g) \dd{g} \), which simplifies the integral.
+
+
+\subsection{Parts}
+
+Recall that the product rule says
+\( \dv{f \cdot g}{x} = \dv{f}{x} g + \dv{g}{x} f \).
+
+\noindent
+\input{fig/int/2}
+
+Basically,
+\[ f \cdot g = \int f'(x)g(x) + \int g'(x)f(x) \dd x. \]
+Thus, given an integral of the form of the summands, we can consider it as
+\[ \int f'(x)g(x) = f(g)g(x) - \int g'(x)f(x) \dd x. \]
+and
+\[ \int g'(x)f(x) = f(g)g(x) - \int f'(x)g(x) \dd x. \]
+
+
+
+\section{Applications}
+
+\subsection{Arc length}
+
+Take some arc we want to measure the length of.
+
+\noindent
+\input{fig/app/1}
+
+We can approximate the lengths by taking straight lines at smaller and smaller intervals.
+We get the length \( \sqrt{\dd{x}^2 + \dd{y}^2} \).
+Since we don't want to just add the lengths together as we take smaller \( dx \),
+we can integrate instead.
+But we need some rate to accumulate.
+The rate we want is per \( dx \).
+Thus if we take
+\[ \frac{1}{dx} \sqrt{dx^2 + dy^2} = \sqrt{1 + \left(\frac{dy}{dx}\right)^2}, \]
+we get the rate of accumulation of length per \( dx \),
+which allows us to take the integral
+\[ \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \dd x \]
+to get the total length.
+
+\end{document}
