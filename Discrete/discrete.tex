@@ -136,5 +136,37 @@ Continuing this way, we eventually find all primes.
 Note that when we are at a certain prime and eliminate a multiple as composite,
 this is the smallest prime divisor of that number.
 
+\subsection{The Euclidean Algorithm}
+
+Let \( a \) be a natural number,
+and let \( d \) be one of its divisors.
+Then we know \( a = dm \) for some \( m \).
+Now let \( d \) be the gcd of \( a \) and \( b \).
+Thus \( a = dm_1 \) and \( b = dm_2 \).
+
+Now if we take \( a/b = dm_1/dm_2 \)
+and rewrite it as \( a = qb + r \) or equivalently
+\( dm_1 = q \cdot dm_2 + m_3 \)
+and let \( c = dm_3 \),
+then we can see that the gcd of \( a \) and \( b \)
+is the same as the gcd of \( b \) and \( c \), that is, \( d \).
+
+\subsection{Prime Factorization}
+
+Think about breaking \( n \) down into prime factors.
+Any grouping, including none, off them is a divisor.
+Any number that includes all the same prime factors is a multiple of \( n \).
+
+\noindent
+\input{fig/num/2}
+
+We can characterize the gcd and lcm of \( n \) and \( m \)
+in terms of their prime factorizations like so.
+
+\noindent
+\input{fig/num/3}
+
+Another way to do it is to take the minimum of all the exponents for the gcd,
+and take the maximum of all the exponents for the lcm.
 
 \end{document}
