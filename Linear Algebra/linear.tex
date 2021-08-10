@@ -13,11 +13,20 @@
 
 \section{Vectors}
 
-A vector in \( \R^n \) is an ordered \( n \)-tuple of elements of \( \R \).
-Geometrically, we can think of a vector \( \vb{v} \) as a position in \( \R^n \),
-whose position a long each axis is specified by the coordinates of \( \vb{v} \).
+Vectors are a way of describing things along different dimensions or aspects.
+Each coordinate of the vector describes the quantity along each dimension.
+The standard basis vectors \( e_i \)
+are vectors whose quantities are just 1 along the dimension \( i \)
+and zero for the others.
+Thus,
+any vector \( v \) is just the linear combination of its coordinates
+with the corresponding basis vectors
+\( v_1 e_1 + \dots + v_n e_n \).
 
-Another way to think about a vector is as a change in position.
+Geometrically, we can think of a vector \( \vb{v} \) as a position in \( \R^n \),
+whose position along each axis is specified by the coordinates of \( \vb{v} \).
+
+Another way to think about a vector is as a displacement.
 For example,
 we can think of \( \va{v} \) as the change from the position \( \vb{0} \) to \( \vb{v} \),
 or \( \va{v} = \vb{v} - \vb{0} \).
@@ -27,7 +36,10 @@ or \( \va{v} = \vb{v} - \vb{0} \).
 
 \subsection{Addition and subtraction}
 
-We can add two vectors \( \vb{u} \) and \( \vb{v} \)
+Adding a vector to another is simply just adding the quantities along each dimension.
+Subtraction is taking the difference.
+
+Geometrically, we can add two vectors \( \vb{u} \) and \( \vb{v} \)
 by considering where we end up if we start at position \( \vb{u} \)
 then apply the change \( \va{v} \).
 Thus, \( \vb{u} + \va{v} = \vb{z} \).
@@ -49,5 +61,35 @@ Since this is a change in position,
 it doesn't matter from where we apply the change.
 If we think of \( \vb{v} \) as our zero,
 then \( \vb v + \va z = \vb v + ( \vb u - \vb v ) = \vb u \).
+
+\section{Matrices}
+
+A matrix is just a bunch of vectors put together.
+Then matrix multiplication by a vector is just a linear combination of the matrix vectors
+with the coefficients of the multiplying vector.
+\[ Mv = 
+    \begin{pmatrix}
+    \vb{m_1}, \vb{m_2}, \dots, \vb{m_n}
+    \end{pmatrix}
+    v
+    = v_1 \vb{m_1} + \dots + v_n \vb{m_n}.
+\]
+In other words,
+we are treating the matrix vectors as a new kind of "basis" vectors or dimensions,
+and we are describing a new vector with the same quantities along the new dimensions.
+In this way, a matrix represents a new set of dimensions or matrix vectors,
+each of which are still described with the standard basis.
+
+\noindent
+\input{fig/vector/4}
+
+Multiplying two matrices together is just multiplying a matrix by multiple vectors
+\[ MN = (\vb{m_1}, \dots, \vb{m_i})(\vb{n_1}, \dots, \vb{n_i})
+    = ([n_{1_1} \vb{m_1} + \dots + n_{1_j} \vb{m_i}], \dots, 
+       [n_{i_1} \vb{m_1} + \dots + n_{i_j} \vb{m_i}])
+\]
+
+
+
 
 \end{document}
