@@ -13,23 +13,29 @@
 
 \section{Vectors}
 
-Vectors are a way of describing things along different dimensions or aspects.
-Each coordinate of the vector describes the quantity along each dimension.
-The standard basis vectors \( e_i \)
-are vectors whose quantities are just 1 along the dimension \( i \)
-and zero for the others.
+\subsection{Geometry}
+
+A vector in 2 dimensional space is an oriented length.
+In 3 dimensions, vectors are oriented ares.
+Then oriented volumes, and so on.
+They can represent a position in space, or a displacement (change in position).
+
+\subsection{Coordinates}
+
+Numerically, vectors describe things along different dimensions or aspects.
+We do this by fixing an origin and a basis.
+Each axis represents a dimension we want to talk about,
+and the origin represents 0.
+Then a length along each axis represents a quantity along each dimension.
+
+In Euclidean space, it is convenient to use the standard basis.
+To identify each oriented length with coordinates,
+we put the tail at the origin and describe the length along each axis where the head is.
+These are the coordinates of the vector relative to a given basis.
 Thus,
 any vector \( v \) is just the linear combination of its coordinates
 with the corresponding basis vectors
 \( v_1 e_1 + \dots + v_n e_n \).
-
-Geometrically, we can think of a vector \( \vb{v} \) as a position in \( \R^n \),
-whose position along each axis is specified by the coordinates of \( \vb{v} \).
-
-Another way to think about a vector is as a displacement.
-For example,
-we can think of \( \va{v} \) as the change from the position \( \vb{0} \) to \( \vb{v} \),
-or \( \va{v} = \vb{v} - \vb{0} \).
 
 \noindent
 \input{fig/vector/1}
@@ -65,8 +71,9 @@ then \( \vb v + \va z = \vb v + ( \vb u - \vb v ) = \vb u \).
 \section{Matrices}
 
 A matrix is just a bunch of vectors put together.
-Then matrix multiplication by a vector is just a linear combination of the matrix vectors
-with the coefficients of the multiplying vector.
+These are called the column vectors.
+Then matrix multiplication by a vector is just a linear combination of the column vectors
+with the coordinates of the multiplying vector, given the same basis
 \[ Mv = 
     \begin{pmatrix}
     \vb{m_1}, \vb{m_2}, \dots, \vb{m_n}
@@ -75,10 +82,8 @@ with the coefficients of the multiplying vector.
     = v_1 \vb{m_1} + \dots + v_n \vb{m_n}.
 \]
 In other words,
-we are treating the matrix vectors as a new kind of "basis" vectors or dimensions,
-and we are describing a new vector with the same quantities along the new dimensions.
-In this way, a matrix represents a new set of dimensions or matrix vectors,
-each of which are still described with the standard basis.
+we are treating the matrix vectors as a new set of "basis" vectors or dimensions,
+and we are describing a new vector with the same coordinates along the new dimensions.
 
 \noindent
 \input{fig/vector/4}
@@ -89,6 +94,84 @@ Multiplying two matrices together is just multiplying a matrix by multiple vecto
        [n_{i_1} \vb{m_1} + \dots + n_{i_j} \vb{m_i}])
 \]
 
+This is just getting the linear combinations of the column vectors of \( M \)
+with the coordinates of each vector of \( N \). 
+
+
+\section{Geometric Product}
+
+\subsection{Inner Product}
+
+The inner product between two vectors \( u \) and \( v \) is
+\[ \vb{u} \vdot \vb{v} = \norm{\vb{u}} \norm{\vb{v}} \cos(\theta). \]
+The term \( \norm{\vb{v}} \cos{\theta} \)
+can be thought of as the norm of the projection of \( \vb{v} \) onto \( \vb{u} \).
+This is the same as the projection of \( \vb{u} \) onto \( \vb{v} \).
+That is, the projection of \( \vb{u} \) onto \( \vb{v} \)
+is
+\[ 
+P_{\vb{v}}(\vb{u}) = \frac{\vb{u} \vdot \vb{v}}{\norm{\vb{v}}} \cdot
+\frac{\vb{v}}{\norm{\vb{v}}}
+= \frac{\vb{u} \vdot \vb{v}}{\norm{\vb{v}}^2} \vb{v}.
+\]
+
+Given an orthonormal basis,
+we can find the inner product like so:
+\[ 
+\vb{u} \vdot \vb{v} =
+(u_1 \vb{e_1} + \dots + u_n \vb{e_n}) \vdot
+(v_1 e_1 + \dots + v_n \vb{e_n})
+= u_1 v_1 + \dots + u_n v_n.
+\]
+
+\newpage
+We can always find an orthonormal basis given any basis \( \vb{v_1}, \dots, \vb{v_n} \).
+To do this, let \( \vb{b_2} = \vb{v_2} - P_{\vb{v_1}}(\vb{v_2)} \).
+Continue for the rest of the basis vectors,
+then normalize every vector.
+This is called the Gram-Schmidt orthogonalization.
+
+\noindent
+\input{fig/vector/5}
+
+\subsubsection{Law of Cosines}
+
+Triangles can be characterized by vectors as such, \( \vb{a} + \vb{b} + \vb{c} = 0 \).
+
+\noindent
+\input{fig/vector/6}
+
+Then \( \vb{c} = -(\vb{a} + \vb{b}) \).
+Thus
+\begin{align*}
+\norm{\vb{c}}^2 &= (\vb{a} + \vb{b}) \vdot (\vb{a} + \vb{b}) =
+(a_1 e_1 + a_2 e_2) \vdot (b_1 e_1 + b_2 e_2) \\
+&= \norm{\vb{a}}^2 + \norm{\vb{b}}^2 + \norm{\vb{a}} \norm{\vb{b}} \cos(\theta) \\
+&= \norm{\vb{a}}^2 + \norm{\vb{b}}^2 - \norm{\vb{a}} \norm{\vb{b}} \cos(\theta_i).
+\end{align*}
+
+\subsubsection{Cauchy-Schwartz Inequality}
+
+This inequality says that \( \abs{\vb{u} \vdot \vb{v}} \leq \norm{\vb{u}} \norm{\vb{v}} \).
+This is because
+\( \frac{\vb{u} \vdot \vb{v}}{\norm{\vb{u}} \norm{\vb{v}}} = \cos(\theta) \)
+thus
+\begin{align*}
+-1 \leq \frac{\vb{u} \vdot \vb{v}}{\norm{\vb{u}} \norm{\vb{v}}} \leq 1 \implies
+\abs{\vb{u} \vdot \vb{v}} \leq \norm{\vb{u}} \norm{\vb{v}}.
+\end{align*}
+This is just the triangle inequality on the orthogonal decomposition.
+Let \( \vb{p} = P_{\vb{u}}(\vb{v}) \).
+Then \( \vb{v} = \vb{p} + (\vb{v} - \vb{p}) \)
+
+\noindent
+\input{fig/vector/7}
+
+
+\subsection{Outer Product}
+
+The outer product between two vectors \( \vb{u} \wedge \vb{v} \)
+is an oriented area.
 
 
 
